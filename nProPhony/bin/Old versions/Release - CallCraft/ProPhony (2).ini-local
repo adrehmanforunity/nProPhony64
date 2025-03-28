@@ -1,0 +1,13 @@
+[Main]
+Server=192.168.16.137
+ServerPort=5060
+;wsClientCloseAllConnections=0
+
+[Database]
+Type=mssql
+DBComServer=.\SQLEXPRESS
+DatabasePort=1443
+UserID=sa
+Database=ProPhonyV3.1
+Password=123
+ConnectionTimeOut=2

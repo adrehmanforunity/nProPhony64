@@ -1,0 +1,3 @@
+ - 2023-04-26 28.1 sorry msg to pulse is fix as format
+ - 2023-04-26 28.0 After Download Recording is converted to MP3 format to reduce the file size
+ - 2023-04-26 28.0 Folder will be Open automatically where the MP3 was downloaded

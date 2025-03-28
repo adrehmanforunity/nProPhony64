@@ -1,0 +1,7 @@
+USE [SIPIKAVRxPlusV3]
+GO
+
+-- Add columns [CRMInteraction] and [CRMSession] to [dbo].[Table_CallsFromAgent]
+ALTER TABLE [dbo].[Table_CallsFromAgent]
+ADD [CRMInteraction] [nvarchar](50) NULL,
+    [CRMSession] [nvarchar](50) NULL;

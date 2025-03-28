@@ -1,0 +1,58 @@
+USE [ProphonyV3]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_INSERT_CallsFromAgent]    Script Date: 11/27/2023 7:06:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+ Create procedure [dbo].[SP_INSERT_CallsFromAgent]
+	@CallID bigint,
+	@CallerID nvarchar(49),
+	@CustomerID1 nvarchar(49),
+	@CustomerID2 nvarchar(49),
+	@AgentID nvarchar(49),
+	@AgentName nvarchar(149),
+	@Verifyed bigint,
+	@Language nvarchar(10),
+	@CRMInteraction nvarchar(50),
+	@CRMSession nvarchar(50)
+
+
+	AS
+
+
+		DECLARE @LanguageCode NVARCHAR(10);
+        SELECT @LanguageCode = CASE 
+                                    WHEN @Language = 'pushto' THEN '2'
+                                    WHEN @Language = 'english' THEN '1'
+                                    ELSE '0'
+                               END;
+	
+	Set @Language = @LanguageCode;
+
+
+INSERT INTO [SIPIKAVRxPlusV3].[dbo].[Table_CallsFromAgent]
+           ([CallID]
+           ,[CallerID]
+           ,[CustomerID1]
+           ,[CustomerID2]
+           ,[DateTime_TransferedOn]
+           ,[AgentID]
+           ,[AgentName]
+		   ,[RedByIVR]
+		   ,[Verifyed]
+		   ,[Language]
+		   ,[CRMInteraction]
+		   ,[CRMSession])
+
+     VALUES
+           (@CallID, @CallerID, @CustomerID1, @CustomerID2, GETDATE(), @AgentID, @AgentName,0,@Verifyed,@Language,@CRMInteraction,@CRMSession)
+
+	DECLARE	@id bigint
+	set @id = @@IDENTITY 
+	select @id as RowID
+

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ovsPSProPhony
+</name>
+</assembly>
+<members>
+<member name="T:ovsPSProPhony.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:ovsPSProPhony.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:ovsPSProPhony.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="F:ovsPSProPhony.PortSIP.PortSIPLib._rgs">
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ <summary>
+ Private members and methods
+ </summary>
+</member>
+<member name="F:ovsPSProPhony.PortSIP.PortSIPLib._callbackDispatcher">
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</member>
+<member name="M:ovsPSProPhony.PortSIP.PortSIP_NativeMethods.PSCallback_createCallbackDispatcher">
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</member>
+<member name="M:ovsPSProPhony.PortSIP.PortSIP_NativeMethods.PortSIP_delCallbackParameters(System.IntPtr)">
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+</member>
+<member name="T:ovsPSProPhony.PortSIP.AUDIOCODEC_TYPE">
+ Audio codec type
+</member>
+<member name="T:ovsPSProPhony.PortSIP.VIDEOCODEC_TYPE">
+ Video codec type
+</member>
+<member name="T:ovsPSProPhony.PortSIP.AUDIO_RECORDING_FILEFORMAT">
+ The audio record file format
+</member>
+<member name="T:ovsPSProPhony.PortSIP.RECORD_MODE">
+The audio/Video record mode
+</member>
+<member name="T:ovsPSProPhony.PortSIP.AUDIOSTREAM_CALLBACK_MODE">
+The audio stream callback mode
+</member>
+<member name="T:ovsPSProPhony.PortSIP.VIDEOSTREAM_CALLBACK_MODE">
+The video stream callback mode
+</member>
+<member name="T:ovsPSProPhony.PortSIP.PORTSIP_LOG_LEVEL">
+ Log level
+</member>
+<member name="T:ovsPSProPhony.PortSIP.SRTP_POLICY">
+ SRTP Policy
+</member>
+<member name="T:ovsPSProPhony.PortSIP.TRANSPORT_TYPE">
+ Transport for SIP signaling.
+</member>
+<member name="T:ovsPSProPhony.PortSIP.SESSION_REFRESH_MODE">
+The session refreshment by UAC or UAS
+</member>
+<member name="T:ovsPSProPhony.PortSIP.DTMF_METHOD">
+send DTMF tone with two methods
+</member>
+<member name="T:ovsPSProPhony.PortSIP.EC_MODES">
+ type of Echo Control
+</member>
+<member name="T:ovsPSProPhony.PortSIP.AGC_MODES">
+ type of Automatic Gain Control
+</member>
+<member name="T:ovsPSProPhony.PortSIP.NS_MODES">
+ type of Noise Suppression
+</member>
+<member name="T:ovsPSProPhony.TControl.RECORD_MODE">
+The audio/Video record mode
+</member>
+</members>
+</doc>

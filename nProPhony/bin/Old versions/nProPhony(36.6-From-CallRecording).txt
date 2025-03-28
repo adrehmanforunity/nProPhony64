@@ -1,0 +1,13 @@
+USE [ProphonyV3]
+GO
+
+/****** Object:  Table [dbo].[TBL_CallsData]    Script Date: 3/14/2024 1:28:41 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER TABLE [dbo].[TBL_CallsData]
+ADD [InteractionID] [varchar](50) NULL,
+ [SessionID] [varchar](50) NULL;

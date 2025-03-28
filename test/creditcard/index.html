@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPhony JS Tester</title>
+
+ 
+</head>
+<body>
+    <form id="proPhonyControls">
+        <table style="width:10%">
+            <td style="width:100%">
+                <h10 id='connectionStatus' style="background-color: red;">Disconnected</h10>
+            </td>
+            <td>
+                <input type="button" value="Connect" id="btnConnect" onclick="connectProPhony()" />
+            </td>
+            <td>
+                <input type="button" value="Disconnect" id="btnDisconnect" onclick="disconnectProPhony()" disabled />
+            </td>
+			<td>
+                <input type="button" value="Check-Alive" id="btnCheckAlive" onclick="checkAliveProPhony()" />
+            </td>
+			<td>
+                <input type="button" value="launchApp" id="btnlaunchApp" onclick="launchApp()" />
+            </td>
+
+        </table>
+
+        <br><br>
+        <div>
+            <input type="button" value="Agent List" id="btnAgentList" onclick="getAgents()" />
+            <select id="AgentsList" name="AgentsList" size="5">
+                <option value="CSO.01">99169ca0-6031-448b-e53d-08d9d9e10651</option>
+                <option value="CSO.01">ovs</option>
+                <option value="CSO.01">CSO.01</option>
+                <option value="CSO.02">CSO.02</option>
+                <option value="Agent1">Agent1</option>
+                <option value="Agent2">Agent2</option>
+                <option value="OVS">OVS</option>
+                <option value="mi-2001">mi-2001</option>
+            </select>
+        </div>
+        <br>
+        <section>
+            <input type="button" value="Login" id="btnLogin" onclick="loginAgent()" />
+            <input type="button" value="Logout" id="btnLogout" onclick="sendCommand('logout')" />
+            <input type="button" value="Inbound Ready" id="btnReadyInbound" onclick="sendCommand('ready-inbound')" />
+            <input type="button" value="Outbound Ready" id="btnReadyOutbound" onclick="sendCommand('ready-outbound,mymode')" />
+        </section>
+        <br><br>
+        <section>
+            <input type="button" value="NR-Meeting" id="btnNRMeeting" onclick="sendCommand('notready-meeting')" />
+            <input type="button" value="NR-Lunch" id="btnNRPrayer" onclick="sendCommand('notready-prayer')" />
+            <input type="button" value="NR-Prayer" id="btnNRLunch" onclick="sendCommand('notready-lunch')" />
+            <input type="button" value="NR-Other" id="btnNROther" onclick="sendCommand('notready-other')" />
+        </section>
+        <br><br>
+        <section>
+            <input type="button" value="Agent Status" id="btnAgentStatus" onclick="sendCommand('AgentStatus')" />
+            <input type="button" value="Call Status" id="btnCallStatus" onclick="sendCommand('CallStatus')" />
+            <input type="button" value="List Agents" id="btnListgAgents" onclick="sendCommand('getAgents')" />
+            <input type="button" value="List IVRs" id="btnListgIVRs" onclick="sendCommand('getIVRs')" />
+        </section>
+        <br><br>
+        <section>
+            <input type="button" value="Accept" id="btnAccept" onclick="sendCommand('CallAccept')" />
+            <input type="button" value="Reject" id="btnReject" onclick="sendCommand('CallReject')" />
+            <br>
+            <input type="checkbox" id="checkSendForFeedback" name="checkSendForFeedback" value="false">
+            <label for="checkSendForFeedback"> Send for Feedback</label><br>
+            <input id="feedbackVDN" placeholder="Feedback ID" />
+            <!-- 
+            <input type="button" value="Disconnect" id="btnDisconnect" onclick="sendCommand('CallDisconnect')" />
+            -->
+            <input type="button" value="Disconnect" id="btnDisconnect" onclick="doCallDisconnect()" />
+            
+
+        </section>
+        <br><br>
+        <section>
+                <input id="Number" placeholder="Phone/Ext#. To Call" />
+                <input type="button" value="Make Call" id="btnMakeCall" onclick="callOut()" />
+        </section>
+        <section>
+            <input type="button" value="Hold" id="btnHold" onclick="sendCommand('Callhold')" />
+            <input type="button" value="Unhold" id="btnUnhold" onclick="sendCommand('CallUnhold')" />
+            <input type="button" value="Mute" id="btnHold" onclick="sendCommand('CallMute')" />
+            <input type="button" value="UnMute" id="btnUnhold" onclick="sendCommand('CallUnmute')" />
+        </section>
+        <br><br>
+        <div>
+            <div>
+                <input id="inputCustomerNo" placeholder="CustomerID/CNIC" />
+                <input id="inputCardNo" placeholder="Card Number" />
+            </div>
+            <div>
+                <input id="inputInteractionID" placeholder="InteractionID" />
+                <input id="inputSessionID" placeholder="SessionID" />
+                <input id="inputLanguage" placeholder="Language" />
+            </div>
+            <input type="button" value="TPIN Make" id="btnTPINMake" onclick="tpinGen()" />
+            <input type="button" value="TPIN Verify" id="btnTPINVerify" onclick="tpinVerify()" />
+            <input type="button" value="ATM Make" id="btnATMMake" onclick="atmpinGen()" />
+            <input type="button" value="ccATM Make" id="btnccATMMake" onclick="ccatmpinGen()" />
+
+        </div>
+		<br><br>
+        <div>
+            <div>
+                <input id="MonitorAgentID" placeholder="SomeAgentUUID" />
+                <input id="MonitorMode" placeholder="sniff" />
+            </div>
+            <input id="btn_startMonitor" type="button" value="Start Monitor" onclick="monitorStart()" />
+            <input id="btn_stopMonitor" type="button" value="Stop Monitor" onclick="doCallDisconnect()" />
+        </div>
+		
+    </form>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    <br>
+                    Transfer and Confrance
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="inputAgentID" placeholder="AgentID" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Call Other Agent" id="btnTransfer" onclick="doCallAgent()" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Cancle" id="btncancle" onclick="doCallAgentCancel()" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Transfer" id="btnTransfer" onclick="doCallAgentTransfer()" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="Conference" id="btnConference" onclick="doCallAgentConference()" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+    <pre id="incomming"></pre>
+    <script src='./proPhony.js'></script>
+    <script type="text/javascript">
+	    document.getElementById("MonitorAgentID").value = '013fff50-7fc7-4dcf-6e97-08da1dd907b6'; 
+		document.getElementById("MonitorMode").value = 'sniff'; 
+        document.getElementById("inputAgentID").value = '013fff50-7fc7-4dcf-6e97-08da1dd907b6';
+        document.getElementById("inputInteractionID").value='99169ca0-6031-448b-e53d-08d9d9e10651';
+        document.getElementById("inputSessionID").value='99169ca0-6031-448b-e53d-08d9d9e10661';
+        document.getElementById("inputLanguage").value='urdu';
+        document.getElementById("inputCustomerNo").value='0987654321098';
+        document.getElementById("inputCardNo").value='1234567890123456';
+
+        function launchApp()
+        {
+            console.log("launchApp:");
+			window.location.href = 'nprophony://browser'; // Use the custom protocol
+
+        }
+
+        function checkAliveProPhony()
+        {
+            console.log("you-alive to prophony:");
+            cmd = 'you-alive';
+            sendCommand(cmd);
+        }
+
+        function monitorStart()
+        {
+            agentID = document.getElementById("MonitorAgentID").value;
+			monitorvale = document.getElementById("MonitorMode").value; 
+			
+            console.log("monitorStart to agentID:" + agentID + ",MonitorModeto :" + monitorvale);
+            cmd = 'monitor';
+            sendCommand(cmd + ',' + monitorvale + ',' + agentID);
+        }
+
+
+        function doCallAgent()
+        {
+            agentID = document.getElementById("inputAgentID").value;
+            console.log("doTransfer to agentID:" + agentID);
+            cmd = 'callagent';
+            sendCommand(cmd + ',' + agentID);
+        }
+        function doCallAgentCancel() {
+            agentID = document.getElementById("inputAgentID").value;
+            console.log("doTransfer to agentID:" + agentID);
+            cmd = 'callagent';
+            sendCommand(cmd + ',' + "cancel");
+        }
+        function doCallAgentTransfer() {
+            agentID = document.getElementById("inputAgentID").value;
+            console.log("doTransfer to agentID:" + agentID);
+            cmd = 'callagent';
+            sendCommand(cmd + ',' + "transfer");
+        }
+        function doCallAgentConference() {
+            agentID = document.getElementById("inputAgentID").value;
+            console.log("doTransfer to agentID:" + agentID);
+            cmd = 'callagent';
+            sendCommand(cmd + ',' + "conference");
+        }
+        function doCallDisconnect() {
+        
+            // true,false
+            feedback = document.getElementById("checkSendForFeedback").checked;
+
+            if (feedback) {
+                // if true
+                // feedbackVDN - some number
+                feedbackVDN = document.getElementById("feedbackVDN").value;
+                // Language - 'Urdu,English,Pashto'
+                language = document.getElementById("inputLanguage").value;
+            } else {
+                feedback = false;
+                feedbackVDN = '';
+                language = '';
+            }
+
+            console.log("Disconnecting call: " + feedback + ',' + feedbackVDN + ',' + language);
+            cmd = 'CallDisconnect';
+            if (feedback) {
+				sendCommand(cmd + ',' + feedback + ',' + feedbackVDN + ',' + language);
+			}
+			else
+			{
+				sendCommand(cmd);
+				}
+        }
+
+
+        function getAgents()
+        {
+
+			console.log('Sending get-agents'); // en
+            cmd='get-agents';
+            //agentID=document.getElementById("inputInteractionID").value;
+			//var select = document.getElementById('AgentsList');
+			//var agentID = select.options[select.selectedIndex].value;
+            sendCommand(cmd);
+			console.log('CMD Sent'); // en
+
+        }
+
+        function loginAgent()
+        {
+
+			console.log('Sending Login'); // en
+            cmd='login';
+            // agentID=document.getElementById("inputInteractionID").value;
+			//var select = document.getElementById('AgentsList');
+			//var agentID = select.options[select.selectedIndex].value;
+			//console.log('select:' + select.selectedIndex)
+            //console.log("agentID:" + agentID);
+			sendCommand(cmd + ',' + 'mi-2001');
+			//sendCommand(cmd + ',' + '84cd1131-013f-4d99-0922-08daa2e9a990,alishah.w');
+			//sendCommand(cmd + ',' + 'c02ff9c6-310a-4e0b-01a0-08dafacedd24');
+
+
+		console.log('CMD Sent'); // en
+
+        }
+		function callOut()
+        {
+			// 'callout,1005,I98723487523,S874287345'
+            cmd='callout';
+            interactionID=document.getElementById("inputInteractionID").value;
+            sessionID=document.getElementById("inputSessionID").value;
+            numberToCall=document.getElementById("Number").value;
+            sendCommand(cmd + ',' + numberToCall + ',' + interactionID +',' + sessionID);
+        }
+        function atmpinGen()
+        {
+
+            cmd='pingenatm';
+            interactionID=document.getElementById("inputInteractionID").value;
+            sessionID=document.getElementById("inputSessionID").value;
+            language=document.getElementById("inputLanguage").value;
+            cNIC= document.getElementById("inputCustomerNo").value;
+			sCardNo= document.getElementById("inputCardNo").value;
+
+            sendCommand(cmd + ',' + interactionID +',' + sessionID + ',' + language + ',' + cNIC  + ',' + sCardNo);
+        }
+        function ccatmpinGen()
+        {
+
+            cmd='ccpingenatm';
+            interactionID=document.getElementById("inputInteractionID").value;
+            sessionID=document.getElementById("inputSessionID").value;
+            language=document.getElementById("inputLanguage").value;
+            cNIC= document.getElementById("inputCustomerNo").value;
+			sCardNo= document.getElementById("inputCardNo").value;
+
+            sendCommand(cmd + ',' + interactionID +',' + sessionID + ',' + language + ',' + cNIC  + ',' + sCardNo);
+        }
+
+        function tpinGen()
+        {
+
+            cmd='pingentpin';
+            interactionID=document.getElementById("inputInteractionID").value;
+            sessionID=document.getElementById("inputSessionID").value;
+            language=document.getElementById("inputLanguage").value;
+            cNIC= document.getElementById("inputCustomerNo").value;
+            sendCommand(cmd + ',' + interactionID +',' + sessionID + ',' + language + ',' + cNIC);
+        }
+        function tpinVerify()
+        {
+
+            cmd='pinverify';
+            interactionID=document.getElementById("inputInteractionID").value;
+            sessionID=document.getElementById("inputSessionID").value;
+            language=document.getElementById("inputLanguage").value;
+            cNIC= document.getElementById("inputCustomerNo").value;
+            sendCommand(cmd + ',' + interactionID +',' + sessionID + ',' + language + ',' + cNIC);
+        }
+
+    </script>
+</body>
+</html>

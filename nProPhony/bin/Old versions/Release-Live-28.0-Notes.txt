@@ -1,0 +1,2 @@
+ - After Download Recording is converted to MP3 format to reduce the file size
+ - Folder will be Open automatically where the MP3 was downloaded

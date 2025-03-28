@@ -1,0 +1,2 @@
+APIverfyTelPin=http://192.168.0.252:8100/api/CustomerPINValidation/pin/isValidTelPin
+APIverfyTelPinTimeout=10

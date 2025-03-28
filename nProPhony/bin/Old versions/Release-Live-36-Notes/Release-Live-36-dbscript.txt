@@ -1,0 +1,12 @@
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'apiSERVER', N'192.168.0.25', 1)
+GO
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'apiUser', N'ctiuser', 1)
+GO
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'apiPassowrd', N'karachi123', 1)
+GO
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'apiTimeout', N'10', 1)
+GO
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'ExtensionRenaming', N'1', 1)
+GO
+INSERT [dbo].[TBL_Configuration] ( [Section], [Item], [Value], [Status]) VALUES ( N'Renaming', N'IgnoreRenameError', N'0', 1)
+GO

@@ -1,0 +1,13 @@
+[Main]
+
+Server=192.168.0.250
+ServerPort=5060
+
+[Database]
+AlternateConnectionString=0
+
+Type=MSSQL
+DBComServer=192.168.0.252\SQLEXPRESS
+UserID=sa
+Password=123
+

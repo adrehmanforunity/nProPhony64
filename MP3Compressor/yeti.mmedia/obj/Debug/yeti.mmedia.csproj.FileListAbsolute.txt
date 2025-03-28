@@ -1,0 +1,10 @@
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\bin\Debug\yeti.mmedia.dll
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\bin\Debug\yeti.mmedia.pdb
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\yeti.mmedia.csproj.AssemblyReference.cache
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\Yeti.MMedia.EditWaveWriter.resources
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\Yeti.MMedia.EditFormat.resources
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\Yeti.Controls.NumericTextBox.resources
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\yeti.mmedia.csproj.GenerateResource.cache
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\yeti.mmedia.csproj.CoreCompileInputs.cache
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\yeti.mmedia.dll
+C:\temp\nProPhony\MP3Compressor\yeti.mmedia\obj\Debug\yeti.mmedia.pdb

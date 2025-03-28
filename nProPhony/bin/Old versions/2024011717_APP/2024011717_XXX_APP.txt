@@ -1,0 +1,3 @@
+0-1 17:49:53:5452, Class_FileWriter New() IOThread=True
+0-1 17:49:53:5552, Write_TO_File() Started ThreadFileIO id:4, name:nProPhone File Writing Process
+17:49:53:5552 -1, thFileWriter() Starting

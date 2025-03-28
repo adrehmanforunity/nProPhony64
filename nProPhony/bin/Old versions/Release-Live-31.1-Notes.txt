@@ -1,0 +1,5 @@
+ - 2023-08-17 31.0 WS Connection bug fix, Thanks to Ahtisham
+ - 2023-08-17 31.0 reverted back to version 28, only 64 bit conversion and tray icon changes ignored as it was causing issue by crearing delay on site only
+ - 2023-04-26 28.1 sorry msg to pulse is fix as format
+ - 2023-04-26 28.0 After Download Recording is converted to MP3 format to reduce the file size
+ - 2023-04-26 28.0 Folder will be Open automatically where the MP3 was downloaded
