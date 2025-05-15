@@ -219,7 +219,7 @@ Public Class Form_Splash
         Next
 
 
-        AgentInformation.AppVersion = "41.5"
+        AgentInformation.AppVersion = "41.7"
         Label_Version.Text = AgentInformation.AppVersion
         Try
             LogDir = System.IO.Path.GetTempPath & "SoftPhone"
@@ -1884,7 +1884,9 @@ Public Class Form_Splash
 
         If e.statusCode = "0" Then
             updateStatusText("Logout!")
-            sendTowsClinet("{" & """cmd"":{""ts"":""" & tsString & """,""Login"":" & """Sorry""" & ",""State"":""" & e.statusCode & """,""loginsessionid"":""" & AgentInformation.LoginSessionID & """ }" & "}")
+            If AgentInformation.LoginSessionID <> -1 Then
+                sendTowsClinet("{" & """cmd"":{""ts"":""" & tsString & """,""Login"":" & """Sorry""" & ",""State"":""" & e.statusCode & """,""loginsessionid"":""" & AgentInformation.LoginSessionID & """ }" & "}")
+            End If
         ElseIf e.statusCode = "408" Then
             updateStatusText("Sorry,Request timeout!")
             'sendTowsClinet("{" & """cmd"":{""ts"":""" & tsString & """,""login"":""Sorry,408=Timeout"",""loginsessionid"":""" & AgentInformation.LoginSessionID & """ }" & "}")
@@ -3144,6 +3146,8 @@ Public Class Form_Splash
             If AgentInformation.LoggedIn = False Then
                 If InStr(1, TheCommandText, "cmd{login,") > 0 Then
                     GoTo processGetAgentLoginMsg
+                ElseIf InStr(1, TheCommandText, "cmd{shutdown}") > 0 Then
+                    GoTo processshutdown
                 ElseIf InStr(1, TheCommandText, "cmd{you-alive}") > 0 Then
                     GoTo processyoualive
                 ElseIf InStr(1, TheCommandText, "cmd{get-agents}") > 0 Then
@@ -3169,8 +3173,20 @@ processyoualive:
                     'msgFromWSClinet = $"{{""cmd"":{{""ts"":""{tsString}"",""LoggedIn"":""{AgentInformation.LoggedIn}"",""loginsessionid"":""{AgentInformation.LoginSessionID}""}},""FromOSUser"":""{AgentInformation.FromOSUser}""}},""PABXExt"":""{AgentInformation.PABXExt}""}},""AppPath"":""{AgentInformation.AppPath.Replace("\", "\\")}""}},""AppVersion"":""{AgentInformation.AppVersion}""}},""AgentID"":""{AgentInformation.AgentID}""}}"
                     'msgFromWSClinet = $"{{""cmd"":{{""ts"":""{tsString}""}},""LoggedIn"":""{AgentInformation.LoggedIn}"",""loginsessionid"":""{AgentInformation.LoginSessionID}"",""FromOSUser"":""{AgentInformation.FromOSUser}"",""PABXExt"":""{AgentInformation.PABXExt}"",""AppPath"":""{AgentInformation.AppPath.Replace("\", "\\")}"" ,""AppVersion"":""{AgentInformation.AppVersion}"",""AgentID"":""{AgentInformation.AgentID}""}}"
                     msgFromWSClinet = $"{{""cmd"":{{""ts"":{{""LoggedIn"":""{AgentInformation.LoggedIn}"",""loginsessionid"":""{AgentInformation.LoginSessionID}"",""FromOSUser"":""{AgentInformation.FromOSUser}"",""PABXExt"":""{AgentInformation.PABXExt}"",""AppPath"":""{AgentInformation.AppPath.Replace("\", "\\")}"" ,""AppVersion"":""{AgentInformation.AppVersion}"",""AgentID"":""{AgentInformation.AgentID}""}}}}}}"
-
                     sendTowsClinet(msgFromWSClinet)
+
+                Case "cmd{shutdown}"
+processshutdown:
+                    If AgentInformation.LoggedIn = False Then
+                        msgFromWSClinet = "{" & """cmd"":{""ts"":""" & tsString & """,""shutdown"":""Not logged-in"",""loginsessionid"":""" & AgentInformation.LoginSessionID & """ }" & "}"
+                        sendTowsClinet(msgFromWSClinet)
+                        Application.DoEvents()
+                        Write_Log("", "Shutdown=Received:" & "From PULSE")
+                        Application.Exit()
+                    Else
+                        msgFromWSClinet = "{" & """cmd"":{""ts"":""" & tsString & """,""shutdown"":""logged-in"",""loginsessionid"":""" & AgentInformation.LoginSessionID & """ }" & "}"
+                        sendTowsClinet(msgFromWSClinet)
+                    End If
 
                 Case "cmd{get-agents}"
 processGetAgentsMsg:

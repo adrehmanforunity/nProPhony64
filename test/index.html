@@ -26,6 +26,10 @@
 			<td>
                 <input type="button" value="launchApp" id="btnlaunchApp" onclick="launchApp()" />
             </td>
+				<td>
+                <input type="button" value="shutdown" id="btnlaunchApp" onclick="shutdown()" />
+            </td>
+
 
         </table>
 
@@ -171,6 +175,13 @@
             console.log("launchApp:");
 			window.location.href = 'nprophony://browser'; // Use the custom protocol
 
+        }
+		function shutdown()
+        {
+            console.log("sending shutdown to prophony:");
+            cmd = 'shutdown';
+            sendCommand(cmd);
+			console.log("sent shutdown to prophony:");
         }
 
         function checkAliveProPhony()
